@@ -1,0 +1,46 @@
+<!-- ShortcutMaster.csproj — עותק עם הסברים. קובץ ההגדרות של הפרויקט, בפורמט XML. -->
+
+<!-- Sdk="Microsoft.NET.Sdk" = פרויקט .NET רגיל (לא אתר ולא אפליקציה גרפית). -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- קבוצה ראשונה: הגדרות כלליות של התוכנית. -->
+  <PropertyGroup>
+    <!-- Exe = התוצר הוא תוכנה שמריצים (ולא ספרייה). -->
+    <OutputType>Exe</OutputType>
+    <!-- גרסת .NET שהפרויקט בנוי עבורה. -->
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- מוסיף אוטומטית using נפוצים: System, System.IO, System.Linq, System.Collections.Generic ועוד. -->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- מפעיל בדיקת null: הקומפיילר מזהיר כשמשתנה עלול להיות null. -->
+    <Nullable>enable</Nullable>
+    <!-- שם הקובץ שייווצר: shortcut.dll / shortcut.exe. -->
+    <AssemblyName>shortcut</AssemblyName>
+    <!-- מרחב השמות הראשי של הקוד. -->
+    <RootNamespace>ShortcutMaster</RootNamespace>
+    <!-- אם במחשב מותקנת רק גרסת .NET חדשה יותר (9, 10...) — הכלי ירוץ עליה במקום להיכשל. -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+
+  <!-- קבוצה שנייה: הגדרות ההפצה (שלב 5) — אריזת הכלי כ־dotnet tool שמתקינים בפקודה אחת. -->
+  <PropertyGroup>
+    <!-- אומר ל־dotnet pack לארוז את הפרויקט ככלי שורת פקודה גלובלי. -->
+    <PackAsTool>true</PackAsTool>
+    <!-- השם שמקלידים בטרמינל אחרי ההתקנה: shortcut. -->
+    <ToolCommandName>shortcut</ToolCommandName>
+    <!-- שם החבילה, שבו משתמשים ב־dotnet tool install / update / uninstall. -->
+    <PackageId>ShortcutMaster</PackageId>
+    <!-- מספר הגרסה. מעלים אותו בכל עדכון (1.0.1, 1.1.0...). -->
+    <Version>1.0.0</Version>
+    <!-- תיאור קצר של החבילה. -->
+    <Description>Personal command shortcuts for PowerShell, CMD, Bash and Zsh.</Description>
+    <!-- התיקייה שבה dotnet pack ישמור את קובץ החבילה (.nupkg). -->
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+  </PropertyGroup>
+
+  <!-- קבוצת הספריות החיצוניות שהפרויקט משתמש בהן. -->
+  <ItemGroup>
+    <!-- System.CommandLine — הספרייה הרשמית של מיקרוסופט לניהול פקודות, ארגומנטים, אפשרויות ועזרה (שלב 2). -->
+    <PackageReference Include="System.CommandLine" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>
