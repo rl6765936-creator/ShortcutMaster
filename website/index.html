@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShortcutMaster — one word for any command</title>
+    <meta name="description" content="ShortcutMaster is a free command-line tool: save a short name once, then run any command, app, folder or website by typing just that name — in PowerShell, CMD, Git Bash, Bash and Zsh." />
+    <meta name="theme-color" content="#070b24" />
+    <meta property="og:title" content="ShortcutMaster" />
+    <meta property="og:description" content="Save a short name once. Run any command by typing just that name, in every terminal." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <script>
+      try {
+        var l = localStorage.getItem('shortcutmaster.locale');
+        if (!l) l = (navigator.language || '').toLowerCase().indexOf('he') === 0 ? 'he' : 'en';
+        if (l === 'he') { document.documentElement.lang = 'he'; document.documentElement.dir = 'rtl'; }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>ShortcutMaster needs JavaScript for this page. Source code: https://github.com/rl6765936-creator/ShortcutMaster</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

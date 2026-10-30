@@ -3,6 +3,10 @@ bin/
 obj/
 nupkg/
 
+# Website
+node_modules/
+dist/
+
 # IDE files
 .vs/
 .vscode/

@@ -1,5 +1,8 @@
+> 🌐 **אתר הפרויקט, כולל דמו שרץ בדפדפן:** https://rl6765936-creator.github.io/ShortcutMaster/
+>
 > **מבנה המאגר:**
 > - [`ShortcutMaster/`](ShortcutMaster) — קוד המקור של הכלי.
+> - [`website/`](website) — אתר הפרויקט (React + Vite), שמתפרסם אוטומטית ל־GitHub Pages.
 > - [`ShortcutMaster_Explained/`](ShortcutMaster_Explained) — אותו קוד בדיוק, עם הסבר בעברית מעל כל שורה (ללימוד).
 >
 > כל הפקודות שבהמשך מריצים מתוך התיקייה `ShortcutMaster`.
