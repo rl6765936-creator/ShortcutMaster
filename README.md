@@ -5,7 +5,7 @@
 > - [`website/`](website) — אתר הפרויקט (React + Vite), שמתפרסם אוטומטית ל־GitHub Pages.
 > - [`ShortcutMaster_Explained/`](ShortcutMaster_Explained) — אותו קוד בדיוק, עם הסבר בעברית מעל כל שורה (ללימוד).
 >
-> כל הפקודות שבהמשך מריצים מתוך התיקייה `ShortcutMaster`.
+> פקודות הבנייה מקוד המקור מריצים מתוך התיקייה `ShortcutMaster`.
 
 # ShortcutMaster
 
@@ -18,7 +18,28 @@ gs
 
 ---
 
-## התקנה (פעם אחת)
+## התקנה מהירה ב־Windows עם shortcut.exe (בלי .NET)
+
+1. מורידים את **`shortcut.exe`** מעמוד ה־[Releases](https://github.com/rl6765936-creator/ShortcutMaster/releases/latest).
+2. מריצים פעם אחת ב־PowerShell. הפקודות מעבירות את הקובץ לתיקייה קבועה ומוסיפות אותה ל־PATH של המשתמש, בלי הרשאות מנהל:
+```powershell
+$dir = "$env:LOCALAPPDATA\ShortcutMaster\bin"
+New-Item -ItemType Directory -Force $dir | Out-Null
+Move-Item -Force "$HOME\Downloads\shortcut.exe" "$dir\shortcut.exe"
+Unblock-File "$dir\shortcut.exe"
+$path = [Environment]::GetEnvironmentVariable('Path', 'User')
+if ($path -notlike "*$dir*") { [Environment]::SetEnvironmentVariable('Path', "$path;$dir", 'User') }
+```
+3. פותחים טרמינל **חדש** ומריצים פעם אחת:
+```
+shortcut install
+```
+
+> הקובץ לא חתום דיגיטלית, ולכן Windows עלול להציג אזהרה. כדי לוודא שהקובץ תקין, משווים אותו לקובץ `SHA256SUMS.txt` שבאותו Release.
+
+---
+
+## התקנה מקוד המקור (Windows, macOS, Linux)
 
 ### 1. התקנת .NET 8 SDK
 מורידים ומתקינים מהאתר הרשמי של מיקרוסופט: https://dotnet.microsoft.com/download
@@ -145,6 +166,15 @@ shortcut run gs -- --short
 dotnet pack -c Release
 dotnet tool update --global --add-source ./nupkg ShortcutMaster
 ```
+
+## פרסום גרסה חדשה של shortcut.exe
+
+GitHub בונה את `shortcut.exe` ובודק אותו אוטומטית. כדי לפרסם גרסה:
+```powershell
+git tag v1.0.0
+git push origin v1.0.0
+```
+אפשר גם להפעיל את הבנייה מהלשונית **Actions** ← **Release Windows exe** ← **Run workflow**.
 
 ## הסרה מלאה
 ```
