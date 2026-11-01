@@ -77,9 +77,11 @@ jobs:
           New-Item -ItemType Directory -Force $zipDir | Out-Null
           Copy-Item publish/shortcut.exe, README.md $zipDir
           Compress-Archive -Path "$zipDir/*" -DestinationPath "dist/ShortcutMaster-$env:VERSION-win-x64.zip"
-          Get-ChildItem dist -File | ForEach-Object {
+          # Hash first, then write: the sums file must not be in the list it describes.
+          $sums = Get-ChildItem dist -File | Where-Object Name -ne 'SHA256SUMS.txt' | ForEach-Object {
             "$((Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower())  $($_.Name)"
-          } | Out-File -Encoding ascii dist/SHA256SUMS.txt
+          }
+          $sums | Out-File -Encoding ascii dist/SHA256SUMS.txt
           Get-Content dist/SHA256SUMS.txt
 
       - name: Publish the release
